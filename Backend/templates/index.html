@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Positioning Prediction</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h2>Product Positioning Prediction</h2>
+  <form id="productForm" action="/onsubmit" method="POST">
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="Price" required>
+
+    <label for="competitorPrice">Competitor's Price:</label>
+    <input type="text" id="competitorPrice" name="Competitor's Price" required>
+
+    <label for="price">Promotion:</label>
+    <select name="Promotion" id="promotion:" required="required">
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+
+
+    
+    <label for="footTraffic">Foot Traffic:</label>
+    <select name="Foot Traffic" id="footTraffic" required="required">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+
+    
+    <label for="consumerDemographics">Consumer Demographics:</label>
+    <select name="Consumer Demographics" id="consumerDemographics" required="required">
+      <option value="Families">Families</option>
+      <option value="College Students">College Students</option>
+      <option value="Seniors">Seniors</option>
+      <option value="Young adults">Young adults</option>
+    </select>
+    
+    
+    <label for="productCategory">Product Category:</label>
+    <select name="Product Category" id="productCategory" required="required">
+      <option value="Electronics">Electronics</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Food">Food</option>
+    </select>
+    
+    <label for="seasonal">Seasonal:</label>
+    <select name="Seasonal" id="seasonal" required="required">
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+
+    <label for="seasonal">Sales Volume:</label>
+    <input type="text" id="salesVolume" name="Sales Volume" required>
+    
+    <button type="submit">Predict Product Positioning</button>
+  </form>
+  <div class="prediction" id="prediction">{{prediction_text}}</div>
+</div>
+
+<!-- <script>
+  const form = document.getElementById('productForm');
+  const predictionElement = document.getElementById('prediction');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value;
+    });
+
+    try {
+      const response = await fetch('http://localhost:5000/onsubmit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formDataObject)
+      });
+      
+      const data = await response.json();
+      const prediction = data.prediction;
+      predictionElement.textContent = `Prediction: ${prediction}`;
+    } catch (error) {
+      console.error('Error predicting product positioning:', error);
+    }
+  });
+</script> -->
+</body>
+</html>
